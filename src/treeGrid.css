@@ -104,3 +104,18 @@ table.tree-grid {
 	max-height : 500px;
 	overflow-y : scroll;
 }
+.editable-cell{
+    border: solid white;
+    padding:5px;
+    cursor: pointer;
+}
+.editable-cell:hover{
+    border: solid rgb(0,169,224);
+}
+.table tbody tr td{
+    padding:2px;
+}
+
+.table tbody tr:hover{
+    background-color: #E2E2E2;
+}
