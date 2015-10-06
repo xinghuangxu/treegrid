@@ -1,6 +1,6 @@
 (function () {
   angular
-    .module('template/treeGrid/treeGrid.html', [])
+    .module('template/treeGrid/treeGrid.html', ["xeditable"])
     .run([
       '$templateCache',
       function ($templateCache) {
@@ -24,7 +24,7 @@
           "       </td>\n" +
           "       <td ng-repeat=\"col in colDefinitions\" >\n" +
           "         <div ng-if=\"col.cellTemplate\" compile=\"col.cellTemplate\" cell-template-scope=\"col.cellTemplateScope\"></div>\n" +
-          "         <div ng-if=\"!col.cellTemplate\" class=\"editable-cell\">{{row.branch[col.field]}}</div>\n" +
+          "         <div ng-if=\"!col.cellTemplate\" class=\"editable-cell\" editable-text=\"row.branch[col.field]\">{{row.branch[col.field]||\"empty\"}}</div>\n" +
           "       </td>\n" +
           "     </tr>\n" +
           "   </tbody>\n" +
@@ -34,7 +34,7 @@
       }]);
 
   angular
-    .module('treeGrid', [
+    .module('treeGrid', ["xeditable",
       'template/treeGrid/treeGrid.html'
     ])
 

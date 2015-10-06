@@ -1,9 +1,12 @@
 (function () {
     var app, deps;
 
-    deps = ['treeGrid'];
+    deps = ['treeGrid', "xeditable"];
 
     app = angular.module('treeGridTest', deps);
+    app.run(function (editableOptions) {
+        editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+    });
 
     app.controller('treeGridController', function ($scope, $timeout) {
         var tree;
@@ -153,7 +156,7 @@
                 "Population": 718212004,
                 "TimeZone": "BST"
             }
-            ];
+        ];
 
 
         var myTreeData = getTree(rawTreeData, 'DemographicId', 'ParentId');
@@ -163,25 +166,25 @@
         $scope.expanding_property = {
             field: "Name",
             displayName: "Demographic Name",
-			sortable : true,
-			filterable: true
+            sortable: true,
+            filterable: true
         };
         $scope.col_defs = [
             {
                 field: "Description",
-				sortable : true,										
-				sortingType : "string"
+                sortable: true,
+                sortingType: "string"
             },
             {
                 field: "Area",
-				sortable : true,										
-				sortingType : "number",
-				filterable: true
+                sortable: true,
+                sortingType: "number",
+                filterable: true
             },
             {
                 field: "Population",
-				sortable : true,										
-				sortingType : "number"
+                sortable: true,
+                sortingType: "number"
             },
             {
                 field: "TimeZone",
@@ -197,14 +200,14 @@
                 return [];
 
             var tree = [],
-                rootIds = [],
-                item = data[0],
-                primaryKey = item[primaryIdName],
-                treeObjs = {},
-                parentId,
-                parent,
-                len = data.length,
-                i = 0;
+                    rootIds = [],
+                    item = data[0],
+                    primaryKey = item[primaryIdName],
+                    treeObjs = {},
+                    parentId,
+                    parent,
+                    len = data.length,
+                    i = 0;
 
             while (i < len) {
                 item = data[i++];
@@ -227,7 +230,8 @@
 
             for (var i = 0; i < rootIds.length; i++) {
                 tree.push(treeObjs[rootIds[i]]);
-            };
+            }
+            ;
 
             return tree;
         }
