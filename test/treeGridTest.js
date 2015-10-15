@@ -157,6 +157,7 @@
                 "TimeZone": "BST"
             }
         ];
+        $scope.rawData = JSON.stringify(rawTreeData,null, '\t');
 
 
         var myTreeData = getTree(rawTreeData, 'DemographicId', 'ParentId');
@@ -178,6 +179,7 @@
             {
                 field: "Area",
                 sortable: true,
+                type: "select",
                 sortingType: "number",
                 filterable: true
             },
@@ -191,6 +193,8 @@
                 displayName: "Time Zone"
             }
         ];
+        $scope.columnDefinition=JSON.stringify($scope.col_defs,null,'\t');
+
         $scope.my_tree_handler = function (branch) {
             console.log('you clicked on', branch)
         }
@@ -230,8 +234,7 @@
 
             for (var i = 0; i < rootIds.length; i++) {
                 tree.push(treeObjs[rootIds[i]]);
-            }
-            ;
+            };
 
             return tree;
         }
